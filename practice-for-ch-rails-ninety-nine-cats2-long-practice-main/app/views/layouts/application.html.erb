@@ -15,6 +15,16 @@
     <nav class="main-nav">
       <h1><a href="<%= cats_url %>">99 Cats</a></h1>
     </nav>
+
+    <% if logged_in? %>
+        <h3><%= current_user.username %></h3>
+        <form action="<%= session_url%>" method="POST">
+        <input type='hidden' name="_method" value="DELETE">
+        <input type="submit" value="logout">
+        </form>
+    <% else %>
+      <a href="<%=new_session_url%>">Login</a>
+    <%end %>
     <main>
       <%= yield %>
     </main>
